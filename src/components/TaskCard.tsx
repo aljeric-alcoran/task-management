@@ -26,8 +26,9 @@ export default function TaskCard({ task }: { task: Task; }) {
       medium: ArrowRight,
       low: ArrowDown
    } as const;
-
-   const Icon = priorityIcon[task.priority];
+   
+   const Icon = priorityIcon[task.priority as "high" | "medium" | "low"];
+   const classes = priorityClasses[task.priority as "high" | "medium" | "low"]
    
    const [open, setOpen] = useState<boolean>(false);
    const [update, setUpdate] = useState<boolean>(false);
@@ -72,7 +73,7 @@ export default function TaskCard({ task }: { task: Task; }) {
                   {task.description}
                </ItemDescription>
                <div className="flex items-center gap-3 mt-3 text-sm">
-                  <Badge className={`rounded-sm capitalize ${priorityClasses[task.priority]}`} variant="outline">
+                  <Badge className={`rounded-sm capitalize ${classes}`} variant="outline">
                      <Icon/>
                      {task.priority}
                   </Badge>
@@ -94,7 +95,7 @@ export default function TaskCard({ task }: { task: Task; }) {
                )}
             </ItemActions>
 
-            <FormDialog open={update} setOpen={setUpdate} />
+            <FormDialog open={update} setOpen={setUpdate} task={task}/>
             <DeleteDialog task={task} open={open} setOpen={setOpen} />
          </div>
       </Item>

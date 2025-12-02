@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import TaskForm from "./forms/TaskForm";
+import { Task } from "@/lib/model";
 
 export default function FormDialog({ 
    open,
@@ -8,7 +9,7 @@ export default function FormDialog({
 }: { 
    open: boolean; 
    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-   task?: any
+   task?: Task
 }) {
    const descText = task ? "update the" : "create a new";
    return (
@@ -25,7 +26,7 @@ export default function FormDialog({
                      Fill in the details below to { descText } task.
                   </DialogDescription>
                </DialogHeader>
-               <TaskForm setOpen={setOpen}/>
+               <TaskForm setOpen={setOpen} task={task}/>
             </DialogContent>
          </Dialog>
       </>

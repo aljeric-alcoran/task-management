@@ -8,9 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
    Select,
    SelectContent,
-   SelectGroup,
    SelectItem,
-   SelectLabel,
    SelectTrigger,
    SelectValue,
  } from "@/components/ui/select"
@@ -23,15 +21,17 @@ import { useTaskFormSchema, TaskFormSchema } from "@/schema/task.schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createTask } from "@/lib/services";
+import { useEffect } from "react";
+import { Task } from "@/lib/model";
 
 export default function TaskForm({ 
    task,
    setOpen
 }: { 
-   task?: any; 
+   task?: Task; 
    setOpen: (value: boolean) => void;
 }) {
-   const form = useTaskFormSchema();
+   const form = useTaskFormSchema(task);
    const queryClient = useQueryClient();
 
    const addTask = useMutation({
@@ -58,6 +58,15 @@ export default function TaskForm({
       }
    }
 
+   useEffect(() => {
+      if (task) {
+         form.reset({
+            task_title: task.task_title ?? "",
+            description: task.description ?? "",
+         });
+      }
+   }, [task]);
+
    return (
       <Form {...form}>
          <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -69,7 +78,7 @@ export default function TaskForm({
                      <FormItem>
                         <FormLabel>Task title</FormLabel>
                         <FormControl>
-                           <Input {...field} />
+                           <Input {...field} autoComplete="off"/>
                         </FormControl>
                         <FormMessage className="text-xs"/>
                      </FormItem>
@@ -83,7 +92,7 @@ export default function TaskForm({
                      <FormItem>
                         <FormLabel>Description</FormLabel>
                         <FormControl>
-                           <Textarea rows={6} {...field} />
+                           <Textarea rows={10} {...field} />
                         </FormControl>
                         <FormMessage className="text-xs"/>
                      </FormItem>
@@ -105,12 +114,9 @@ export default function TaskForm({
                                  <SelectValue placeholder="Set priority" />
                               </SelectTrigger>
                               <SelectContent>
-                                 <SelectGroup>
-                                    <SelectLabel>Priority</SelectLabel>
-                                    <SelectItem value="high" className="text-amber-500">High</SelectItem>
-                                    <SelectItem value="medium" className="text-blue-600">Medium</SelectItem>
-                                    <SelectItem value="low" className="text-gray-600">Low</SelectItem>
-                                 </SelectGroup>
+                                 <SelectItem className="text-amber-500" value="high">High</SelectItem>
+                                 <SelectItem className="text-blue-600" value="medium">Medium</SelectItem>
+                                 <SelectItem className="text-gray-600" value="low">Low</SelectItem>
                               </SelectContent>
                            </Select>
                         </FormControl>
