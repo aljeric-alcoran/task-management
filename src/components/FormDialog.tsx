@@ -25,7 +25,7 @@ export default function FormDialog({
                      Fill in the details below to { descText } task.
                   </DialogDescription>
                </DialogHeader>
-               <TaskForm/>
+               <TaskForm setOpen={setOpen}/>
             </DialogContent>
          </Dialog>
       </>
