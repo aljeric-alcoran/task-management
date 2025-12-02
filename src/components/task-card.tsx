@@ -1,14 +1,21 @@
+"use client"
+
 import { ArrowDown, ArrowRight, ArrowUpRight, Pencil, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "./ui/item";
 import { Badge } from "./ui/badge";
+import DeleteDialog from "./delete-dialog";
+import { useState } from "react";
+import FormDialog from "./form-dialog";
 
 export default function TaskCard() {
    const highPriorityClass = "border-amber-500 text-amber-500 bg-amber-50";
    const mediumPriorityClass = "border-blue-500 text-blue-500 bg-blue-50";
    const lowPriorityClass = "border-gray-700 text-gray-700 bg-gray-50";
    
+   const [open, setOpen] = useState<boolean>(false);
+   const [update, setUpdate] = useState<boolean>(false);
    return(
       <Item variant="outline" size="sm" asChild>
          <div>
@@ -29,13 +36,16 @@ export default function TaskCard() {
                </ItemDescription>
             </ItemContent>
             <ItemActions>
-               <Button className="bg-blue-600" size="sm">
+               <Button onClick={() => setUpdate(true)} className="bg-blue-600" size="sm">
                   <Pencil/>
                </Button>
-               <Button className="bg-red-500" size="sm">
+               <Button onClick={() => setOpen(true)} className="bg-red-500" size="sm">
                   <Trash2/>
                </Button>
             </ItemActions>
+
+            <FormDialog open={update} setOpen={setUpdate} />
+            <DeleteDialog open={open} setOpen={setOpen} />
          </div>
       </Item>
    );
