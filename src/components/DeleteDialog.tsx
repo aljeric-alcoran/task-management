@@ -20,11 +20,11 @@ export default function DeleteDialog({
       mutationFn: deleteTask,
       onSuccess: (data) => {
          setOpen(false);
-        queryClient.invalidateQueries({ queryKey: ["tasks"] });
-        toast.success("Success!", { description: data.message });
+         queryClient.invalidateQueries({ queryKey: ["tasks"] });
+         toast.success("Success!", { description: data.message });
       },
       onError: (error: any) => {
-        toast.error("Error!", { description: error.message });
+         toast.error("Error!", { description: error.message });
       },
    });
 
