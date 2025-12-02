@@ -1,4 +1,4 @@
-import AppTasks from "@/components/app-tasks";
+import AppTasks from "@/components/AppTasks";
 
 export default function Home() {
    return (

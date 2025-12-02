@@ -5,9 +5,9 @@ import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "./ui/item";
 import { Badge } from "./ui/badge";
-import DeleteDialog from "./delete-dialog";
+import DeleteDialog from "./DeleteDialog";
 import { useState } from "react";
-import FormDialog from "./form-dialog";
+import FormDialog from "./FormDialog";
 
 export default function TaskCard() {
    const highPriorityClass = "border-amber-500 text-amber-500 bg-amber-50";

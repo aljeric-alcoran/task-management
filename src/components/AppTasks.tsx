@@ -1,11 +1,11 @@
 "use client"
 
 import { Card, CardContent, CardHeader } from "./ui/card";
-import TasksSearch from "./tasks-search";
-import TaskCard from "./task-card";
+import TasksSearch from "./TasksSearch";
+import TaskCard from "./TaskCard";
 import { Plus } from "lucide-react";
 import { Button } from "./ui/button";
-import FormDialog from "./form-dialog";
+import FormDialog from "./FormDialog";
 import { useState } from "react";
 
 export default function AppTasks() {
@@ -22,7 +22,7 @@ export default function AppTasks() {
                   Add Task
                </Button>
                <TaskCard/>
-               
+
                <FormDialog 
                   open={open} 
                   setOpen={setOpen}

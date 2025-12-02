@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import AppHeader from "@/components/app-header";
+import AppHeader from "@/components/AppHeader";
 
 const geistSans = Montserrat({
   variable: "--font-montserrat",
