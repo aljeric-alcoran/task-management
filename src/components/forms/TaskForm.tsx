@@ -21,7 +21,6 @@ import { useTaskFormSchema, TaskFormSchema } from "@/schema/task.schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createTask, updateTask } from "@/lib/services";
-import { useEffect } from "react";
 import { Task } from "@/lib/model";
 import { isObjectSharedKeyMatched } from "@/lib/helpers";
 
