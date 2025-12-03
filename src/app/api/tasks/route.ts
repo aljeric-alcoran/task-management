@@ -15,7 +15,7 @@ export async function GET() {
       console.error("Server error:", error);
       return NextResponse.json({ error: "Server error" }, { status: 500 });
    }
- }
+}
 
 export async function POST(req: NextRequest) {
    try {

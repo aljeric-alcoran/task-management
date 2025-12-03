@@ -17,6 +17,7 @@ export default function AppTasks() {
    const { data, isLoading, error } = useQuery({
       queryKey: ["tasks"],
       queryFn: getTasks,
+      refetchOnWindowFocus: false,
    });
 
    const hasTasks = data?.tasks.length > 0;
