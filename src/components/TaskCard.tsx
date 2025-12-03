@@ -2,7 +2,7 @@
 
 import DeleteDialog from "./DeleteDialog";
 import FormDialog from "./FormDialog";
-import { ArrowDown, ArrowRight, ArrowUpRight, Pencil, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, CalendarClock, Pencil, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "./ui/item";
@@ -31,7 +31,7 @@ export default function TaskCard({ task }: { task: Task; }) {
    const classes = priorityClasses[task.priority as "high" | "medium" | "low"]
    
    const [open, setOpen] = useState<boolean>(false);
-   const [update, setUpdate] = useState<boolean>(false);
+   const [isDelete, setIsDelete] = useState<boolean>(false);
    const [isCompleted, setIsCompleted] = useState<boolean>(task.completed);
 
    const queryClient = useQueryClient();
@@ -73,11 +73,16 @@ export default function TaskCard({ task }: { task: Task; }) {
                   {task.description}
                </ItemDescription>
                <div className="flex items-center gap-3 mt-3 text-sm">
-                  <Badge className={`rounded-sm capitalize ${classes}`} variant="outline">
-                     <Icon/>
-                     {task.priority}
-                  </Badge>
-                  <span>Deadline: {formatDateWithOrdinal(task.due_date)}</span>
+                  <span className="w-22">
+                     <Badge className={`rounded-sm capitalize ${classes}`} variant="outline">
+                        <Icon/>
+                        {task.priority}
+                     </Badge>
+                  </span>
+                  <span className="flex items-start gap-1">
+                     <CalendarClock size="16" className="" /> 
+                     {formatDateWithOrdinal(task.due_date)}
+                  </span>
                </div>
             </ItemContent>
             <ItemActions>
@@ -85,18 +90,27 @@ export default function TaskCard({ task }: { task: Task; }) {
                   <div className="border border-green-400 bg-green-50 text-green-600 px-3 py-1 rounded-sm text-xs">Completed</div> 
                : (
                   <>
-                     <Button onClick={() => setUpdate(true)} className="bg-blue-600" size="sm">
+                     <Button 
+                        disabled={completeTaskAction.isPending}
+                        onClick={() => setOpen(true)} 
+                        className="bg-blue-600" size="sm"
+                     >
                         <Pencil/>
                      </Button>
-                     <Button onClick={() => setOpen(true)} className="bg-red-500" size="sm">
+
+                     <Button 
+                        disabled={completeTaskAction.isPending}
+                        onClick={() => setIsDelete(true)} 
+                        className="bg-red-500" size="sm"
+                     >
                         <Trash2/>
                      </Button>
                   </>
                )}
             </ItemActions>
 
-            <FormDialog open={update} setOpen={setUpdate} task={task}/>
-            <DeleteDialog task={task} open={open} setOpen={setOpen} />
+            <FormDialog open={open} setOpen={setOpen} task={task}/>
+            <DeleteDialog task={task} open={isDelete} setOpen={setIsDelete} />
          </div>
       </Item>
    );
