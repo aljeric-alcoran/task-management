@@ -59,3 +59,9 @@ export async function updateTask(task: Task) {
  
    return res.json();
 }
+
+export async function searchTasks(query: string) {
+   const res = await fetch(`/api/tasks/search?query=${encodeURIComponent(query)}`);
+   if (!res.ok) throw new Error("Failed to fetch tasks");
+   return res.json();
+}
