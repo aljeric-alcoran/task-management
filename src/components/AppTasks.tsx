@@ -25,12 +25,12 @@ export default function AppTasks() {
    const [open, setOpen] = useState<boolean>(false);
 
    return (
-      <div className="m-10 w-full">
-         <Card className="w-full">
-            <CardHeader>
+      <div className="md:m-10 w-full">
+         <Card className="w-full rounded-none md:rounded-lg h-full md:h-auto">
+            <CardHeader className="px-3 md:px-6">
                <TasksSearch/>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-3 px-3 md:px-6">
                <Button disabled={isLoading} className="bg-teal-600" onClick={() => setOpen(true)}>
                   <Plus/>
                   Add Task

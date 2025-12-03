@@ -16,7 +16,7 @@ export default function FormDialog({
       <>
          <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent 
-               className="sm:max-w-[425px]"
+               className="md:max-w-[425px]"
                onInteractOutside={(e) => e.preventDefault()}
                onEscapeKeyDown={(e) => e.preventDefault()}
             >

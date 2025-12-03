@@ -72,15 +72,18 @@ export default function TaskCard({ task }: { task: Task; }) {
                <ItemDescription className={`line-clamp-none text-wrap ${task.completed ? "line-through" : ""}`}>
                   {task.description}
                </ItemDescription>
-               <div className="flex items-center gap-3 mt-3 text-sm">
+               <div className="flex flex-col md:flex-row md:items-center gap-3 mt-3 text-sm">
                   <span className="w-22">
                      <Badge className={`rounded-sm capitalize ${classes}`} variant="outline">
                         <Icon/>
                         {task.priority}
                      </Badge>
                   </span>
-                  <span className="flex items-start gap-1">
-                     <CalendarClock size="16" className="" /> 
+                  <span className="flex items-start gap-1 text-xs md:text-sm">
+                     <CalendarClock 
+                        size={16} 
+                        className="w-4 h-4 md:w-4 md:h-4" 
+                     /> 
                      {formatDateWithOrdinal(task.due_date)}
                   </span>
                </div>
