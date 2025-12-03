@@ -60,7 +60,6 @@ export default function TaskForm({
    });
 
    async function onSubmit(values: TaskFormSchema): Promise<void> {
-      console.log('clicked');
       const payload = {
          ...values,
          due_date: values.due_date.toISOString(),
