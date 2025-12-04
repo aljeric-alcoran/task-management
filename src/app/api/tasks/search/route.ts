@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 
 export async function GET(req: NextRequest) {
    const { searchParams } = new URL(req.url);
@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
    
    try {
       if (!query) {
-         const tasks = await prisma.tasks.findMany({
+         const tasks = await prisma.task.findMany({
             orderBy: [
                { completed: "asc" },
                { created_at: "desc" },
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
          
       } else {
 
-         const tasks = await prisma.tasks.findMany({
+         const tasks = await prisma.task.findMany({
             where: {
             OR: [
                { task_title: { contains: query } },

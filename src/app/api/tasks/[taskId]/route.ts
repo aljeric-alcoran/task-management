@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 
 export async function PUT(
    req: NextRequest,
@@ -9,7 +9,7 @@ export async function PUT(
       const { taskId } = await params;
       const body = await req.json();
    
-      const task = await prisma.tasks.upsert({
+      const task = await prisma.task.upsert({
          where: { id: Number(taskId) },
          update: body,
          create: { id: Number(taskId), ...body },
@@ -33,7 +33,7 @@ export async function PATCH(
       const { taskId } = await params;
       const body = await req.json();
    
-      const task = await prisma.tasks.update({
+      const task = await prisma.task.update({
          where: { id: Number(taskId) },
          data: body,
       });
@@ -62,7 +62,7 @@ export async function DELETE(
          );
       }
    
-      const task = await prisma.tasks.delete({
+      const task = await prisma.task.delete({
          where: { id: Number(taskId) }, // convert to number if your ID is Int
       });
    
