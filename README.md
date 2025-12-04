@@ -4,7 +4,7 @@ SIMPLE TASK MANAGEMENT SYSTEM
 
 ### Local Setup
 DATABASE SETUP
-1. Install MySQL. Ensure you have MySQL installed on your local machine.
+1. Install MySQL. Ensure you have MySQL installed on your local machine.<br>
    You can download it from MySQL Downloads.
 
 3. Create a MySQL Instance and Database
