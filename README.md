@@ -3,9 +3,7 @@ SIMPLE TASK MANAGEMENT SYSTEM
 ## Getting Started
 
 ### Local Setup
-
 DATABASE SETUP
-
 1. Install MySQL
    Ensure you have MySQL installed on your local machine. You can download it from MySQL Downloads.
 
@@ -36,7 +34,6 @@ FLUSH PRIVILEGES;
 
 
 NEXT.JS APPLICATION SETUP
-
 1. Install Dependencies
    In your project folder, run:
 ```
@@ -53,7 +50,7 @@ npm install
 DATABASE_URL="mysql://username:password@localhost:3306/your_database_name"
 ```
 
-   Replace the placeholders with your actual credentials:
+   - Replace the placeholders with your actual credentials:
       - username → your MySQL username
       - password → your MySQL password
       - localhost → your host
