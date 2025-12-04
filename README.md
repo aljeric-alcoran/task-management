@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+SIMPLE TASK MANAGEMENT SYSTEM
 
 ## Getting Started
 
-First, run the development server:
+### Local Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+DATABASE SETUP
+
+1. Install MySQL
+   Ensure you have MySQL installed on your local machine. You can download it from MySQL Downloads.
+
+2. Create a MySQL Instance and Database
+   - Start your MySQL server.
+   - Create a new database for your project, e.g., task_management_db.
+
+```
+CREATE DATABASE task_management_db;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   - Optionally, create a dedicated user for this database and assign privileges:
+```
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'test1234';
+GRANT ALL PRIVILEGES ON task_management_db.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Take Note of Your Database Credentials
+   - Host (usually localhost)
+   - Port (default: 3306)
+   - Username (e.g., admin)
+   - Password (e.g., test1234)
+   - Database name (e.g., task_management_db)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+NEXT.JS APPLICATION SETUP
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Install Dependencies
+   - In your project folder, run:
+```
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Create Environment Files
+   - .env 
+   - .env.local 
 
-## Deploy on Vercel
+3. Configure .env File
+   - Add your database connection URL:
+```
+DATABASE_URL="mysql://username:password@localhost:3306/your_database_name"
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - Replace the placeholders with your actual credentials:
+      - username → your MySQL username
+      - password → your MySQL password
+      - localhost → your host
+      - 3306 → your port
+      - your_database_name → your database name
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Configure .env.local File
+   - Add development-specific variables:
+```
+NEXT_PUBLIC_ENVIRONMENT=development
+NEXT_PUBLIC_MYSQL_HOST=localhost
+NEXT_PUBLIC_MYSQL_PORT=3306
+NEXT_PUBLIC_MYSQL_USER=admin
+NEXT_PUBLIC_MYSQL_PASSWORD=test1234
+NEXT_PUBLIC_MYSQL_DATABASE=task_management_db
+```
+5. Push Prisma Schema to Database
+   - Apply your Prisma schema to the database:
+```
+npx prisma db push
+```
+
+6. Generate Prisma Client
+   - Run the following to generate Prisma client based on your schema:
+```
+npx prisma generate
+```
+
+7. Run the Development Server
+   - Start your Next.js application:
+```
+npm run dev
+```
+
+8. Access the Application
+   - Open your browser and go to:
+```
+http://localhost:3000
+```
+
+

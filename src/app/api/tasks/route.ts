@@ -1,9 +1,9 @@
 import { NextResponse, NextRequest } from "next/server";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 
 export async function GET() {
    try {
-      const tasks = await prisma.tasks.findMany({
+      const tasks = await prisma.task.findMany({
          orderBy: [
             { completed: "asc" },
             { created_at: "desc" },
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
    try {
       const payload = await req.json();
    
-      const task = await prisma.tasks.create({
+      const task = await prisma.task.create({
          data: payload,
       });
    
