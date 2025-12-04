@@ -4,11 +4,11 @@ SIMPLE TASK MANAGEMENT SYSTEM
 
 ### Local Setup
 DATABASE SETUP
-1. Install MySQL. Ensure you have MySQL installed on your local machine.<br>
-   You can download it from MySQL Downloads.
+1. Install MySQL.<br>
+   Ensure you have MySQL installed on your local machine. You can download it from MySQL Downloads.
 
-3. Create a MySQL Instance and Database
-   Start your MySQL server.
+3. Create a MySQL Instance and Database<br>
+   Start your MySQL server.<br>
    Create a new database for your project, e.g., task_management_db.
 
 ```
@@ -34,7 +34,7 @@ FLUSH PRIVILEGES;
 
 
 NEXT.JS APPLICATION SETUP
-1. Install Dependencies
+1. Install Dependencies<br>
    In your project folder, run:
 ```
 npm install
@@ -44,7 +44,7 @@ npm install
    - .env 
    - .env.local 
 
-3. Configure .env File
+3. Configure .env File<br>
    Add your database connection URL:
 ```
 DATABASE_URL="mysql://username:password@localhost:3306/your_database_name"
@@ -57,7 +57,7 @@ DATABASE_URL="mysql://username:password@localhost:3306/your_database_name"
       - 3306 → your port
       - your_database_name → your database name
 
-4. Configure .env.local File
+4. Configure .env.local File<br>
    Add development-specific variables:
 ```
 NEXT_PUBLIC_ENVIRONMENT=development
@@ -68,25 +68,25 @@ NEXT_PUBLIC_MYSQL_PASSWORD=test1234
 NEXT_PUBLIC_MYSQL_DATABASE=task_management_db
 ```
 
-5. Push Prisma Schema to Database
+5. Push Prisma Schema to Database<br>
    Apply your Prisma schema to the database:
 ```
 npx prisma db push
 ```
 
-6. Generate Prisma Client
+6. Generate Prisma Client<br>
    Run the following to generate Prisma client based on your schema:
 ```
 npx prisma generate
 ```
 
-7. Run the Development Server
+7. Run the Development Server<br>
    Start your Next.js application:
 ```
 npm run dev
 ```
 
-8. Access the Application
+8. Access the Application<br>
    Open your browser and go to:
 ```
 http://localhost:3000
