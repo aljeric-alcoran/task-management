@@ -10,14 +10,14 @@ DATABASE SETUP
    Ensure you have MySQL installed on your local machine. You can download it from MySQL Downloads.
 
 2. Create a MySQL Instance and Database
-   - Start your MySQL server.
-   - Create a new database for your project, e.g., task_management_db.
+   Start your MySQL server.
+   Create a new database for your project, e.g., task_management_db.
 
 ```
 CREATE DATABASE task_management_db;
 ```
 
-   - Optionally, create a dedicated user for this database and assign privileges:
+   Optionally, create a dedicated user for this database and assign privileges:
 ```
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'test1234';
 GRANT ALL PRIVILEGES ON task_management_db.* TO 'admin'@'localhost';
@@ -33,10 +33,12 @@ FLUSH PRIVILEGES;
 
 
 
+
+
 NEXT.JS APPLICATION SETUP
 
 1. Install Dependencies
-   - In your project folder, run:
+   In your project folder, run:
 ```
 npm install
 ```
@@ -46,12 +48,12 @@ npm install
    - .env.local 
 
 3. Configure .env File
-   - Add your database connection URL:
+   Add your database connection URL:
 ```
 DATABASE_URL="mysql://username:password@localhost:3306/your_database_name"
 ```
 
-   - Replace the placeholders with your actual credentials:
+   Replace the placeholders with your actual credentials:
       - username → your MySQL username
       - password → your MySQL password
       - localhost → your host
@@ -59,7 +61,7 @@ DATABASE_URL="mysql://username:password@localhost:3306/your_database_name"
       - your_database_name → your database name
 
 4. Configure .env.local File
-   - Add development-specific variables:
+   Add development-specific variables:
 ```
 NEXT_PUBLIC_ENVIRONMENT=development
 NEXT_PUBLIC_MYSQL_HOST=localhost
@@ -68,26 +70,27 @@ NEXT_PUBLIC_MYSQL_USER=admin
 NEXT_PUBLIC_MYSQL_PASSWORD=test1234
 NEXT_PUBLIC_MYSQL_DATABASE=task_management_db
 ```
+
 5. Push Prisma Schema to Database
-   - Apply your Prisma schema to the database:
+   Apply your Prisma schema to the database:
 ```
 npx prisma db push
 ```
 
 6. Generate Prisma Client
-   - Run the following to generate Prisma client based on your schema:
+   Run the following to generate Prisma client based on your schema:
 ```
 npx prisma generate
 ```
 
 7. Run the Development Server
-   - Start your Next.js application:
+   Start your Next.js application:
 ```
 npm run dev
 ```
 
 8. Access the Application
-   - Open your browser and go to:
+   Open your browser and go to:
 ```
 http://localhost:3000
 ```
